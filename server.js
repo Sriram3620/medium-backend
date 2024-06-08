@@ -3,6 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const puppeteer = require('puppeteer');
 const cors = require('cors');
+
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
@@ -32,8 +33,8 @@ async function scrapeMedium(topic) {
       const browser = await puppeteer.launch({
         headless: true,
         args: ['--no-sandbox', '--disable-setuid-sandbox'],
-        executablePath: await chromium.executablePath, // Use chromium's executable path
-        userDataDir: '/opt/render/.cache/puppeteer'
+        executablePath: '/usr/bin/google-chrome', // Adjust this path if needed
+        userDataDir: '/opt/render/.cache/puppeteer' // Ensure this path is correct
     });
       const page = await browser.newPage();
 
