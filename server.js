@@ -30,12 +30,7 @@ app.get('/articles', (req, res) => {
 
 async function scrapeMedium(topic) {
   try {
-      const browser = await puppeteer.launch({
-        headless: true,
-        args: ['--no-sandbox', '--disable-setuid-sandbox'],
-        executablePath: '/usr/bin/google-chrome', // Adjust this path if needed
-        userDataDir: '/opt/render/.cache/puppeteer' // Ensure this path is correct
-    });
+      const browser = await puppeteer.launch({ executablePath: '/path/to/chrome' });
       const page = await browser.newPage();
 
       // Navigate to the Medium search results page for the given topic
