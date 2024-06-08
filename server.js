@@ -30,8 +30,10 @@ app.get('/articles', (req, res) => {
 async function scrapeMedium(topic) {
   try {
       const browser = await puppeteer.launch({
-        executablePath: puppeteer.executablePath(), 
-        headless: true 
+        headless: true,
+        args: ['--no-sandbox', '--disable-setuid-sandbox'],
+        executablePath: puppeteer.executablePath(),
+        userDataDir: '/opt/render/.cache/puppeteer'
     });
       const page = await browser.newPage();
 
@@ -92,6 +94,6 @@ async function scrapeMedium(topic) {
   }
 }
 
-app.listen(5000, () => {
+app.listen(5001, () => {
     console.log('Server running on port 5000');
 });
