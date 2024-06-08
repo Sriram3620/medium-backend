@@ -32,7 +32,7 @@ async function scrapeMedium(topic) {
       const browser = await puppeteer.launch({
         headless: true,
         args: ['--no-sandbox', '--disable-setuid-sandbox'],
-        executablePath: puppeteer.executablePath(),
+        executablePath: await chromium.executablePath, // Use chromium's executable path
         userDataDir: '/opt/render/.cache/puppeteer'
     });
       const page = await browser.newPage();
