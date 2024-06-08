@@ -29,7 +29,10 @@ app.get('/articles', (req, res) => {
 
 async function scrapeMedium(topic) {
   try {
-      const browser = await puppeteer.launch();
+      const browser = await puppeteer.launch({
+        executablePath: puppeteer.executablePath(), 
+        headless: true 
+    });
       const page = await browser.newPage();
 
       // Navigate to the Medium search results page for the given topic
